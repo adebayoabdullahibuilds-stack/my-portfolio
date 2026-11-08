@@ -4,6 +4,43 @@ const currentYear = document.querySelector("#current-year");
 const themeToggle = document.querySelector(".theme-toggle");
 const themeColor = document.querySelector('meta[name="theme-color"]');
 
+const projectColors = {
+  viara: {
+    primary: "#25245B",
+    label: "#25245B",
+    accent: "#7165D9",
+    soft: "#E9E6FF",
+  },
+  dwellsafe: {
+    primary: "#174C3A",
+    label: "#174C3A",
+    accent: "#58A783",
+    soft: "#E5F1EA",
+  },
+  opon: {
+    primary: "#A65A2E",
+    label: "#9E562C",
+    accent: "#D99A55",
+    soft: "#F7EBDD",
+  },
+};
+
+document.querySelectorAll("[data-project-color]").forEach((card) => {
+  const colors = projectColors[card.dataset.projectColor];
+
+  if (!colors) {
+    console.error(
+      `No project color configuration found for "${card.dataset.projectColor}".`
+    );
+    return;
+  }
+
+  card.style.setProperty("--project-primary", colors.primary);
+  card.style.setProperty("--project-label", colors.label);
+  card.style.setProperty("--project-accent", colors.accent);
+  card.style.setProperty("--project-soft", colors.soft);
+});
+
 function applyTheme(theme) {
   const isDark = theme === "dark";
   document.documentElement.dataset.theme = isDark ? "dark" : "light";

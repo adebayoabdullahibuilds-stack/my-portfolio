@@ -540,8 +540,17 @@ p {
 }
 
 .project-card {
+  --project-primary: var(--ink);
+  --project-label: var(--ink);
+  --project-accent: var(--accent);
+  --project-soft: var(--paper-deep);
   padding: 26px 0 0;
   border-bottom: 1px solid var(--border-soft);
+  transition: border-color 180ms ease;
+}
+
+.project-card:hover {
+  border-bottom-color: var(--project-accent);
 }
 
 .project-topline {
@@ -557,7 +566,16 @@ p {
 }
 
 .project-number {
-  color: var(--accent);
+  padding: 4px 6px;
+  background: var(--project-soft);
+  color: var(--project-label);
+}
+
+.project-type {
+  padding: 4px 8px;
+  border-radius: 2px;
+  background: var(--project-soft);
+  color: var(--project-label);
 }
 
 .project-type i {
@@ -579,7 +597,8 @@ p {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #969d79;
+  background: var(--project-accent);
+  box-shadow: 0 0 0 3px var(--project-soft);
 }
 
 .project-main {
@@ -598,7 +617,7 @@ p {
 
 .project-kicker {
   margin-bottom: 13px;
-  color: #777a72;
+  color: var(--project-label);
   font-family: var(--mono);
   font-size: 9px;
   letter-spacing: 0.03em;
@@ -621,7 +640,7 @@ p {
 }
 
 .title-period {
-  color: var(--accent);
+  color: var(--project-accent);
 }
 
 .project-summary {
@@ -669,8 +688,9 @@ p {
 
 .project-action:hover,
 .project-action:focus-visible {
-  border-color: var(--accent);
-  color: var(--accent);
+  border-color: var(--project-accent);
+  color: var(--project-primary);
+  background: var(--project-soft);
   transform: translateY(-1px);
 }
 
@@ -693,8 +713,9 @@ p {
   text-decoration: none;
 }
 
-.project-link:hover {
-  color: var(--accent);
+.project-link:hover,
+.project-link:focus-visible {
+  color: var(--project-primary);
 }
 
 .project-visual {
@@ -704,10 +725,7 @@ p {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-}
-
-.visual-viara {
-  background: #d9e0d7;
+  background: var(--project-soft);
 }
 
 .finance-window {
@@ -773,11 +791,11 @@ p {
 .finance-chart span {
   flex: 1;
   height: var(--height);
-  background: #8d9f8d;
+  background: var(--project-primary);
 }
 
 .finance-chart span:nth-child(3n) {
-  background: #c8856c;
+  background: var(--project-accent);
 }
 
 .finance-chart-labels {
@@ -799,7 +817,7 @@ p {
 }
 
 .insight-star {
-  color: #bb755b;
+  color: var(--project-accent);
   font-size: 12px;
 }
 
@@ -811,10 +829,6 @@ p {
   font-family: var(--mono);
   font-size: 7px;
   letter-spacing: 0.08em;
-}
-
-.visual-opon {
-  background: #d9d3bb;
 }
 
 .field-lines {
@@ -831,7 +845,7 @@ p {
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  background: #b97754;
+  background: var(--project-accent);
   opacity: 0.84;
 }
 
@@ -847,7 +861,7 @@ p {
   padding: 13px;
   border: 1px solid rgb(39 52 38 / 38%);
   border-radius: 50%;
-  color: #344435;
+  color: var(--project-primary);
 }
 
 .field-pin span,
@@ -867,21 +881,13 @@ p {
   position: absolute;
   right: 14%;
   bottom: 22%;
-  color: #344435;
+  color: var(--project-primary);
   font-family: var(--display);
   font-size: 23px;
   font-weight: 700;
   letter-spacing: -0.07em;
   line-height: 0.97;
   text-align: right;
-}
-
-.visual-opon .visual-caption {
-  color: rgb(42 56 41 / 65%);
-}
-
-.visual-dwellsafe {
-  background: #e4d7cc;
 }
 
 .house-card {
@@ -895,7 +901,7 @@ p {
   position: relative;
   height: 134px;
   overflow: hidden;
-  background: #d7bca7;
+  background: var(--project-soft);
 }
 
 .house-image::before {
@@ -904,7 +910,7 @@ p {
   bottom: 0;
   left: 0;
   height: 34px;
-  background: #849077;
+  background: var(--project-accent);
   content: "";
 }
 
@@ -935,7 +941,7 @@ p {
   width: 0;
   height: 0;
   border-right: 62px solid transparent;
-  border-bottom: 34px solid #596656;
+  border-bottom: 34px solid var(--project-primary);
   border-left: 62px solid transparent;
   content: "";
 }
@@ -958,7 +964,7 @@ p {
   width: 24px;
   height: 52px;
   border-radius: 50% 50% 3px 3px;
-  background: #71816b;
+  background: var(--project-primary);
 }
 
 .house-info {
@@ -1972,6 +1978,11 @@ p {
 :root[data-theme="dark"] .journey-year,
 :root[data-theme="dark"] .journey-arrow {
   color: var(--text-faint);
+}
+
+:root[data-theme="dark"] .project-type,
+:root[data-theme="dark"] .project-number {
+  color: var(--project-label);
 }
 
 :root[data-theme="dark"] .hero-meta-rule,
