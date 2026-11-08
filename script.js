@@ -9,14 +9,22 @@ function applyTheme(theme) {
   document.documentElement.dataset.theme = isDark ? "dark" : "light";
 
   if (themeToggle) {
+    const themeIcon = themeToggle.querySelector(".theme-toggle-icon");
+    const themeLabel = themeToggle.querySelector(".theme-toggle-label");
+
     themeToggle.setAttribute("aria-pressed", String(isDark));
     themeToggle.setAttribute(
       "aria-label",
       `Switch to ${isDark ? "light" : "dark"} theme`
     );
-    themeToggle.querySelector(".theme-toggle-icon").textContent = isDark ? "☀" : "☾";
-    themeToggle.querySelector(".theme-toggle-label").textContent =
-      isDark ? "Light mode" : "Dark mode";
+
+    if (themeIcon) {
+      themeIcon.textContent = isDark ? "☀" : "☾";
+    }
+
+    if (themeLabel) {
+      themeLabel.textContent = isDark ? "Light mode" : "Dark mode";
+    }
   }
 
   if (themeColor) {
@@ -24,16 +32,24 @@ function applyTheme(theme) {
   }
 }
 
-let savedTheme = "light";
-
-try {
-  const preference = localStorage.getItem("portfolio-theme");
-  if (preference === "dark" || preference === "light") {
-    savedTheme = preference;
+function getPreferredTheme() {
+  try {
+    const preference = localStorage.getItem("portfolio-theme");
+    if (preference === "dark" || preference === "light") {
+      return preference;
+    }
+  } catch (error) {
+    console.warn("Theme preference could not be read from local storage.", error);
   }
-} catch (error) {
-  console.warn("Theme preference could not be read from local storage.", error);
+
+  if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    return "dark";
+  }
+
+  return "light";
 }
+
+const savedTheme = getPreferredTheme();
 
 applyTheme(savedTheme);
 
