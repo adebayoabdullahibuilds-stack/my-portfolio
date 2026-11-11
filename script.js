@@ -18,12 +18,45 @@ const projectColors = {
     soft: "#E5F1EA",
   },
   opon: {
-    primary: "#A65A2E",
-    label: "#9E562C",
+    primary: "#9C542B",
+    label: "#9C542B",
     accent: "#D99A55",
     soft: "#F7EBDD",
   },
 };
+
+const revealSections = document.querySelectorAll(
+  ".work-section, .about-section, .toolkit-section, .journey-section, .contact-section"
+);
+const supportsMotionPreference = typeof window.matchMedia === "function";
+
+if (
+  revealSections.length > 0 &&
+  "IntersectionObserver" in window &&
+  supportsMotionPreference &&
+  !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+) {
+  const sectionObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0 }
+  );
+
+  revealSections.forEach((section) => {
+    sectionObserver.observe(section);
+  });
+
+  revealSections.forEach((section) => {
+    section.classList.add("section-reveal");
+  });
+  document.documentElement.classList.add("has-section-reveals");
+}
 
 document.querySelectorAll("[data-project-color]").forEach((card) => {
   const colors = projectColors[card.dataset.projectColor];
