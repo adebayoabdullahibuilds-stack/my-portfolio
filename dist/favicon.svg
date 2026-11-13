@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <style>
+    circle { fill: #f5f3ed; stroke: #1d211e; }
+    text { fill: #1d211e; font-family: 'DM Mono', monospace, sans-serif; font-size: 22px; font-weight: 600; }
+    @media (prefers-color-scheme: dark) {
+      circle { fill: #171a18; stroke: #ecece4; }
+      text { fill: #ecece4; }
+    }
+  </style>
+  <circle cx="32" cy="32" r="29" stroke-width="3"/>
+  <text x="32" y="39" text-anchor="middle" letter-spacing="-1">AA</text>
+</svg>

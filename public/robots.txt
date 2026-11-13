@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://adebayoabdullahi.pxxlspace.cv/sitemap.xml

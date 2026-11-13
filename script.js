@@ -142,6 +142,11 @@ if (currentYear) {
 }
 
 if (menuToggle && primaryNav) {
+  function closeMenu() {
+    menuToggle.setAttribute("aria-expanded", "false");
+    primaryNav.classList.remove("is-open");
+  }
+
   menuToggle.addEventListener("click", () => {
     const isExpanded = menuToggle.getAttribute("aria-expanded") === "true";
     menuToggle.setAttribute("aria-expanded", String(!isExpanded));
@@ -150,8 +155,24 @@ if (menuToggle && primaryNav) {
 
   primaryNav.addEventListener("click", (event) => {
     if (event.target instanceof Element && event.target.closest("a")) {
-      menuToggle.setAttribute("aria-expanded", "false");
-      primaryNav.classList.remove("is-open");
+      closeMenu();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && primaryNav.classList.contains("is-open")) {
+      closeMenu();
+      menuToggle.focus();
+    }
+  });
+
+  document.addEventListener("click", (event) => {
+    if (
+      primaryNav.classList.contains("is-open") &&
+      !primaryNav.contains(event.target) &&
+      !menuToggle.contains(event.target)
+    ) {
+      closeMenu();
     }
   });
 }
